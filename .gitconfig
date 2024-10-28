@@ -1,0 +1,33 @@
+[user]
+	name = Jasper Nygaard
+	email = jasper@sovs.net
+	signaturekey = 
+	signingkey = 
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	add-commit = !git add -A && git commit
+	cclean = !git reset --hard && git clean -fd
+	pushup = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
+	lol = log --oneline --graph --decorate
+	s = status
+	acp = "!f() { git add -A && git commit -m \"$1\" && git push; }; f"
+[init]
+	defaultBranch = main
+[core]
+	pager = less -FRSX
+	editor = code --wait
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+[pull]
+	rebase = true
+[fetch]
+	prune = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[credential]
+	helper = osxkeychain
